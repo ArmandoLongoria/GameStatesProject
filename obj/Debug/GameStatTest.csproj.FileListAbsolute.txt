@@ -1,0 +1,7 @@
+C:\Users\Space Face\source\repos\GameStatTest\GameStatTest\bin\Debug\GameStatTest.exe.config
+C:\Users\Space Face\source\repos\GameStatTest\GameStatTest\bin\Debug\GameStatTest.exe
+C:\Users\Space Face\source\repos\GameStatTest\GameStatTest\bin\Debug\GameStatTest.pdb
+C:\Users\Space Face\source\repos\GameStatTest\GameStatTest\obj\Debug\GameStatTest.csprojAssemblyReference.cache
+C:\Users\Space Face\source\repos\GameStatTest\GameStatTest\obj\Debug\GameStatTest.csproj.CoreCompileInputs.cache
+C:\Users\Space Face\source\repos\GameStatTest\GameStatTest\obj\Debug\GameStatTest.exe
+C:\Users\Space Face\source\repos\GameStatTest\GameStatTest\obj\Debug\GameStatTest.pdb

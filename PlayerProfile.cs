@@ -10,42 +10,62 @@ namespace GameStatTest
     {
         private string userName;
         private int userId;
-        private int level;
-        private int xp;
-        private int totalKills;
-        private int totalDeaths;
-        private int careerKd;
+        private double level;
+        private double xp;
+        private const double baseXP = 1000;
+        private double xpToLevelUp;
+        private double xpLeftToLevelUp;
+        private double totalKills;
+        private double totalDeaths;
+        private double careerKd;
+        private const double killPoints = 50;
+        private bool doneLeveling;
 
-        public PlayerProfile(string userName, int userId, int level, int xp, int totalKills, int totalDeaths, int careerKd)
+        public PlayerProfile(string userName, int userId, double level, double totalKills, double totalDeaths)
         {
             this.userName = userName;
             this.userId = userId;
             this.level = level;
-            this.xp = xp;
             this.totalKills = totalKills;
-            this.totalDeaths = totalDeaths;
-            this.careerKd = careerKd;
+            this.totalDeaths = totalDeaths;          
+            xp = totalKills * killPoints;
+            xpToLevelUp = baseXP * level;
+            xpLeftToLevelUp = xpToLevelUp - xp;
+            careerKd = totalKills / totalDeaths;
         }
 
         public override string ToString()
         {
-            return String.Format("\nUsername: {0}\nLevel: {1}\nCareer Kills: {2}\nCareer Deaths: {3}\nCareer K/D: {4}\nXP: {5}\n", userName, level, totalKills, totalDeaths, careerKd, xp);
+            return String.Format("\nUsername: {0}\nLevel: {1}\nCareer Kills: {2}\nCareer Deaths: {3}\nCareer K/D: {4}\nXP: {5}\n", userName, level, totalKills, totalDeaths, careerKd.ToString("N2"), xp);
         }
 
         public string MyUserName { get { return userName; } set { userName = value; } }
         public int MyUserId { get { return userId; } set { userId = value; } }
-        public int MyLevel { get { return level; } set { level = value; } }
-        public int MyXp { get { return xp; } set { xp = value; } }
-        public int MyTotalKills { get { return totalKills; } set { totalKills = value; } }
-        public int MyTotalDeaths { get { return totalDeaths; } set { totalDeaths = value; } }
-        public int MyCareerKd { get { return careerKd; } set { careerKd = value; } }
+        public double MyLevel { get { return level; } set { level = value; } }
+        public double MyXp { get { return xp; } set { xp = value; } }
+        public double MyTotalKills { get { return totalKills; } set { totalKills = value; } }
+        public double MyTotalDeaths { get { return totalDeaths; } set { totalDeaths = value; } }
+        public double MyCareerKd { get { return careerKd; } set { careerKd = value; } }
 
         public void UpdateStats(MatchData matchData)
         {
             MyTotalKills = MyTotalKills + matchData.currentMatchKills;
             MyTotalDeaths = MyTotalDeaths + matchData.currentMatchDeaths;
             MyXp = MyXp + matchData.currentMatchXp;
-            MyCareerKd = MyTotalDeaths / MyTotalKills;
+            MyCareerKd = MyTotalKills / MyTotalDeaths;
+            doneLeveling = false;
+            while (doneLeveling == false)
+            {
+                if(MyXp >= xpToLevelUp)
+                {
+                    MyLevel++;
+                    xpToLevelUp = baseXP * level;
+                }
+                else
+                {
+                    doneLeveling = true;
+                }
+            }
         }
 
     }

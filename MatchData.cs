@@ -8,13 +8,13 @@ namespace GameStatTest
 {
     class MatchData
     {
-        private int matchKills;
-        private int matchDeaths;
+        private double matchKills;
+        private double matchDeaths;
         private double matchKd;
-        private int matchXp;
-        private const int KillPoints = 50;
+        private double matchXp;
+        private const double KillPoints = 50;
 
-        public MatchData(int matchKills, int matchDeaths)
+        public MatchData(double matchKills, double matchDeaths)
         {
             this.matchDeaths = matchDeaths;
             this.matchKills = matchKills;
@@ -24,12 +24,12 @@ namespace GameStatTest
 
         public override string ToString()
         {
-            return String.Format("\nKills: {0}\nDeaths: {1}\nK/D: {2}\nXP: {3}\n", matchKills, matchDeaths, matchKd, matchXp);
+            return String.Format("\nKills: {0}\nDeaths: {1}\nK/D: {2}\nXP: {3}\n", matchKills, matchDeaths, matchKd.ToString("N2"), matchXp);
         }
 
-        public int currentMatchKills { get { return matchKills; }}
-        public int currentMatchDeaths { get { return matchDeaths; }}
-        public int currentMatchXp { get { return matchXp; }}
+        public double currentMatchKills { get { return matchKills; }}
+        public double currentMatchDeaths { get { return matchDeaths; }}
+        public double currentMatchXp { get { return matchXp; }}
 
     }
 }
